@@ -1,12 +1,16 @@
 import React from 'react';
 
 class Note extends React.Component {
+
+  onSubmit(e) {
+    console.log("Submit!");
+  }
   render () {
     const { note } = this.props;
 
     return (
       <div className='note-container'>
-        <form className="note-form">
+        <form className="note-form" onSubmit={(e) => this.onSubmit(e)}>
           <input
             className="note-title-input"
             type="text"
