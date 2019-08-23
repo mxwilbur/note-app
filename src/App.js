@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   getNotes = () => {
-    axios.get(urlFor('notes'))
+    axios.get(urlFor(`notes`))
     .then((res) => this.setState({ notes: res.data }) )
     .catch((err) => console.log(err.response.data) );
   }
@@ -35,7 +35,9 @@ class App extends Component {
   }
 
   submitNote = (data) => {
-    console.log(data);
+    axios.post(urlFor(`notes`), data)
+    .then((res) => this.setState({ showNote: false }) )
+    .catch((err) => console.log(err.response.data) );
   }
 
   render() {
