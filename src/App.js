@@ -49,6 +49,12 @@ class App extends Component {
     .catch((err) => console.log(err.response.data) );
   }
 
+  deleteNote = (id) => {
+    axios.delete(urlFor(`notes/${id}`))
+    .then((res) => console.log(res) )
+    .catch((err) => console.log(err.response.data) );
+  }
+
   render() {
     const { showNote, notes, note } = this.state;
 
