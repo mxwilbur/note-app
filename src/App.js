@@ -5,6 +5,7 @@ import List from './components/List';
 import Note from './components/Note';
 import axios from 'axios';
 import urlFor from './helpers/urlFor';
+import Flash from './components/Flash';
 
 
 class App extends Component {
@@ -14,7 +15,8 @@ class App extends Component {
       showNote: false,
       notes: [],
       note: {},
-      newTag: false
+      newTag: false,
+      error: ''
     };
   }
   toggleNote = () => {
@@ -54,7 +56,14 @@ class App extends Component {
     const newNotesState = this.state.notes.filter((note) => note.id !== id );
     axios.delete(urlFor(`notes/${id}`))
     .then((res) => this.setState({ notes: newNotesState }))
-    .catch((err) => console.log(err.response.data) );
+    .catch((err) => {
+      const {errors } = err.response.data;
+      if (errors.content) {
+        this.setState({error: "Missing Note Content!" });
+      } else if (errors.title) {
+        this.setState({error: "Missing Note Title"});
+      }
+    });
   }
 
   showTagForm = () => {
@@ -83,6 +92,7 @@ class App extends Component {
     return (
       <div className="App">
         <Nav toggleNote={this.toggleNote} showNote={showNote} />
+        <Flash />
         { showNote ?
           <Note
             note={note}
