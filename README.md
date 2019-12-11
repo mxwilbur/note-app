@@ -39,10 +39,10 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## WalkThrough
 
-Follow adding, editing & deleting a note.
+Follow adding, editing & deleting a note.<br>
 ![](note-app-crud.gif)
 
-Follow cancelling out plus adding tag & deleting tag
+Follow cancelling out plus adding tag & deleting tag. <br>
 ![](note-app-tags.gif)
 
 ## Learn More
